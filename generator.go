@@ -21,9 +21,8 @@ func execCommand(command string) {
 	}
 	cmd := exec.Command("sh", "-c", command)
 	cmd.Stderr = os.Stderr
-	if err := cmd.Run(); err != nil {
-		fmt.Println(err)
-	}
+	// Ignore errors as the tool may not be installed.
+	_ = cmd.Run()
 }
 
 // Generator walks the block tree, emitting the Children of Extend blocks
